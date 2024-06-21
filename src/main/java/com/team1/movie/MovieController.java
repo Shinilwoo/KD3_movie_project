@@ -8,6 +8,6 @@ public class MovieController {
 
 	@GetMapping("/")
 	public String home() {
-		return "home";
+		return "test";
 	}
 }
