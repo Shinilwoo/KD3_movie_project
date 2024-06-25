@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+		function validateFileInput() {
+			const fileInput = document.getElementById('fileInput');
+			const filePath = fileInput.value;
+			const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+			if (!filePath) {
+				alert('파일을 선택해 주세요.');
+				return false;
+			}
+
+			if (!allowedExtensions.exec(filePath)) {
+				alert('이미지 파일만 업로드할 수 있습니다. (jpg, jpeg, png, gif)');
+				fileInput.value = '';
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+
+<body>
+	<form action="/uploadfile" method="post" enctype="multipart/form-data" onsubmit="return validateFileInput()">
+		<!--데이터: <input name="data"></p>-->
+		파일: <input type="file" name="file" id="fileInput" accept="image/*"></p>
+		<input type="submit" value="요청">
+		<input type="reset" value="취소">
+	</form>
+</body>
+
+</html>
