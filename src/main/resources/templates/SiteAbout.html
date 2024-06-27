@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/SiteAbout.css}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <header>
+            <div class="faq">FAQ</div>
+        </header>
+        <div>
+            <h1>Why I can't find the search result?</h1>
+        </div>
+        <section class="how sec">
+            <div class=" how div">
+                <ol class="how ol">
+                    <li class="how li">Possible reasons:</li>
+                    <li class="how li">1. Your image is not an original anime screenshot.</li>
+                    <li class="how li">2. The anime has not been added to database yet.</li>
+                    <li class="how li">3. Your image is of modified.</li>
+                </ol>
+                <p class="how p">
+                    Regarding 1. You may try to use SauceNAO and iqdb.org <br> 
+                    which is best for searching anime artwork.<br> 
+                    Regarding 2. New animes currently airing would be <br>
+                    analyzed around 24 hours after TV broadcast. Long-running animes / cartoons are excluded at this<br>
+                    stage. See "What anime are indexed" at the bottom of this page.<br>
+                    As for 3. The image search algorithm is designed for almost-exact match, not similar match. It analyz<br>
+                    the color layout of the image. So, when your image is not a full un-cropped original 16:9 screenshot (i.e.<br>
+                    cropped image), the search would likely fail.<br>
+                    Color is an important factor for the correct search, if heavy tints and filters are applied to the screensho<br>
+                    (i.e. grayscale, contrast, saturation, brightness, sepia), too much information are lost. In this case the<br>
+                    search would also fail. The Edge Histogram can solve this issue by ignoring colors and only search <br>
+                    edges. But I am running out of computing resource to support another image descriptor.<br>
+                    Image transform is also an important factor. If the image is flipped, mirrored or rotated, the search would<br>
+                    also fail.<br>
+                    Text occupied too much of the image. Large texts on the image would interfere the original image. The<br>
+                    system is not smart enough to ignore the text.<br>
+                    If your image has too little distinguish features (e.g. dark images or images with large plain blocks of<br>
+                    plain colors), the search would also fail.<br>
+                    Searching with a real photo (of an anime) definitely won't work. <br>
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

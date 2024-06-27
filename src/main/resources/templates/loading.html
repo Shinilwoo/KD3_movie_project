@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" th:href="@{/loading.css}">
+	<script>
+		function checkResult() {
+			fetch('/checkResult')
+				.then(response => {
+					if (response.ok) {
+						window.location.href = '/result';
+					} else {
+						setTimeout(checkResult, 1000); // 1초 후 다시 체크
+					}
+				})
+				.catch(error => console.error('Error:', error));
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			setTimeout(checkResult, 1000); // 페이지 로드 후 1초 후 체크 시작
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="circle circle1"></div>
+		<div class="circle circle2"></div>
+		<div class="niddle"></div>
+		<div class="number">
+			<div>이미지와 유사한 작품을 찾는 중입니다</div>
+		</div>
+	</div>
+</body>
+
+</html>

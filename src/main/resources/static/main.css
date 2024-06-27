@@ -1,0 +1,88 @@
+body, html {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: url(image\ 12.png);
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #060300;  /* 어두운 반투명 배경 */
+    opacity: 70%;
+    z-index: 1;
+}
+
+.container {
+    z-index: 2;
+    text-align: center;
+}
+.header {
+    font-size: 5em;
+    margin-bottom: 0.1em;
+}
+.subheader {
+    font-size: 1.2em;
+    margin-bottom: 3em;
+}
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+form{
+    display: flex;
+    gap: 0;
+}
+.input-container input[type="file"] {
+    background-color: #fff;
+    color: #000;
+    padding: 15px 20px;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    flex: 1;
+    border-radius: 10px 0 0 10px ;
+}
+
+.input-container input[type="file"]::file-selector-button{
+    display: none;
+}
+.input-container input[type="submit"]  {
+    padding: 15px 20px;
+    font-size: 1em;
+    background-color: #105284;
+    color: white;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+
+.drag-drop-text {
+    margin-top: 1em;
+    font-size: 1em;
+    color: #aaa;
+}
+
+.navigation {
+    margin: 5px;
+    position : fixed;
+    bottom : 0;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+}

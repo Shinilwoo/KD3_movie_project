@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+
+<body>
+	<h1> 요청 결과 </h1>
+	<img th:src="'data:image/png;base64,'+${reqResult[file]}"></p>
+	<br><br>
+	<div th:if="${#lists.isEmpty(reqResult.result_list)}">
+		<p>결과 없음</p>
+	</div>
+	<table border="1" th:if="${not #lists.isEmpty(reqResult.result_list)}">
+		<tr>
+			<th>유사도</th>
+			<th>제 목</th>
+			<th>포스터</th>
+			<th>주인공</th>
+			<th>장르</th>
+			<th>감독</th>
+			<th>개봉일</th>
+			<th>트레일러 영상</th>
+			<th>줄거리</th>
+		</tr>
+		<tr th:each="movies:${reqResult.result_list}">
+			<td th:text="${movies.score}"></td>
+			<td th:text="${movies.movie_info.title}"></td>
+			<td>
+				<img th:src="${movies.movie_info.poster_url}" width="100px" th:alt="${movies.movie_info.title}" />
+			</td>
+			<td th:text="${movies.movie_info.actors}"></td>
+			<td th:text="${movies.movie_info.genres}"></td>
+			<td th:text="${movies.movie_info.director}"></td>
+			<td th:text="${movies.movie_info.release_date}"></td>
+			<td>
+				<a th:href="${movies.movie_info.trailer_url}">트레일러 보기</a>
+			</td>
+			<td th:text="${movies.overview}"></td>
+		</tr>
+	</table>
+
+
+</body>
+
+</html>

@@ -1,48 +1,130 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Result</title>
+	<link rel="stylesheet" th:href="@{/result.css}">
 </head>
 
 <body>
-	<h1> 요청 결과 </h1>
-	<img th:src="'data:image/png;base64,'+${reqResult[file]}"></p>
-	<br><br>
-	<div th:if="${#lists.isEmpty(reqResult.result_list)}">
-		<p>결과 없음</p>
+	<div class="overlay"></div>
+	<div class="slide">
+		<div th:each="movie, iterStat : ${reqResult.result_list}" class="slide_item">
+			<div class="container">
+				<div class="header">What Is This Movie?</div>
+				<div class="main-content">
+					<div class="left-section">
+						<div class="year" th:text="${movie.movie_info.release_date}"></div>
+						<div class="movie-title" th:text="${movie.movie_info.title}"></div>
+						<div class="button-container">
+							<a th:href="${movie.movie_info.trailer_url}" class="button" target="_blank">WATCH TRAILER</a>
+						</div>
+						<div id="image-section">
+							<img th:src="${movie.movie_info.poster_url}" alt="Poster">
+							<div class="demo-overlay"></div>
+						</div>
+					</div>
+					<div class="right-section">
+						<div class="description">
+							<p th:text="'감독: ' + ${movie.movie_info.director}"></p>
+							<p th:text="'장르: ' + ${movie.movie_info.genres}"></p>
+							<p th:text="'배우: ' + ${movie.movie_info.actors}"></p>
+							<p th:text="${movie.overview}"></p>
+						</div>
+					</div>
+				</div>
+				<div class="navigation">
+					<a href="#">제가 찾는 영화가 맞습니다</a>
+					<a th:href="@{/faq}">FAQ</a>
+				</div>
+			</div>
+			
+		</div>
+		<div class="slide_prev_button slide_button">◀</div>
+		<div class="slide_next_button slide_button">▶</div>
 	</div>
-	<table border="1" th:if="${not #lists.isEmpty(reqResult.result_list)}">
-		<tr>
-			<th>유사도</th>
-			<th>제 목</th>
-			<th>포스터</th>
-			<th>주인공</th>
-			<th>장르</th>
-			<th>감독</th>
-			<th>개봉일</th>
-			<th>트레일러 영상</th>
-			<th>줄거리</th>
-		</tr>
-		<tr th:each="movies:${reqResult.result_list}">
-			<td th:text="${movies.score}"></td>
-			<td th:text="${movies.movie_info.title}"></td>
-			<td>
-				<img th:src="${movies.movie_info.poster_url}" width="100px" th:alt="${movies.movie_info.title}" />
-			</td>
-			<td th:text="${movies.movie_info.actors}"></td>
-			<td th:text="${movies.movie_info.genres}"></td>
-			<td th:text="${movies.movie_info.director}"></td>
-			<td th:text="${movies.movie_info.release_date}"></td>
-			<td>
-				<a th:href="${movies.movie_info.trailer_url}">트레일러 보기</a>
-			</td>
-			<td th:text="${movies.overview}"></td>
-		</tr>
-	</table>
+	<!--    <div class="overlay"></div>
+    <div class="slide">
+        <div class="slide_item">
+            <div class="container">
+                <div class="header">What Is This Movie?</div>
+                <div class="main-content">
+                    <div class="left-section" id="left-section">
+                        <div class="year" id="movieYear1">2019</div>
+                        <div class="movie-title" id="movieTitle1">JOKER</div>               
+                        <div class="button-container" id="buttonContainer1">
+                            <button class="button">WATCH TRAILER</button>
+                        </div>
+                        <div id="image-section">
+                            <img src="20211126012605_vswniwkv.png" alt="Poster">
+                            <div class="demo-overlay"></div>
+                        </div>                       
+                    </div>
+                    <div class="right-section">
+                        <img src="05041257_joker.jpg" alt="Uploaded Image">
+                        <div class="description">
+                            <p>감독: 토드 필립스</p>
+                            <p>장르 : 범죄, 스릴러, 느와르, 서스펜스, 복수, 드라마, 피카레스크, 블랙 코미디, 사회고발, 시대극</p>
+                            <p>배우 : 아서 플렉, 머레이 프랭클린, 페니 플렉, 토머스 웨인, 브루스 웨인, 알프레드 페니워스</p>
+                            <p>고담시에 사는 광대 아서 플렉은 착하게 살아보려 
+                                하지만 인생의 부조리함과 쓴 맛이 끊임없이 그를 
+                                압도한다. 짝사랑도, 커리어도 마음대로 되지 않고 
+                                자신을 향한 세상의 더러움을 견디다 못한 그는 
+                                결국 최악의 악당 조커로 재탄생한다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <a href="#">제가 찾는 영화가 아닙니다</a>
+                    <a href="SiteAbout.html">FAQ</a>
+                    <a href="#">제가 찾는 영화가 맞습니다</a>
+                </div>
+            </div>
+        </div>
+        <div class="slide_item">
+            <div class="container">
+                <div class="header">What Is This Movie?</div>
+                <div class="main-content">
+                    <div class="left-section">
+                        <div class="year" id="movieYear2">2019</div>
+                        <div class="movie-title" id="movieTitle2">WONDERLAND</div>               
+                        <div class="button-container" id="buttonContainer2">
+                            <button class="button">WATCH TRAILER</button>
+                        </div>
+                        <div id="image-content2">
+                            <div id="image-section2">
+                                <img src="cinema-4213751_640.jpg" alt="Poster">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <img src="05041257_joker.jpg" alt="Uploaded Image">
+                        <div class="description">
+                            <p>감독: sdsadad</p>
+                            <p>장르 : 범죄, 스릴러, 느와르, 서스펜스, 시대극</p>
+                            <p>배우 : 아서 플렉, 머레이 프랭클린, 페니 플렉, 토머스 웨인, 브루스 웨인, 알프레드 페니워스</p>
+                            <p>고담시에 사는 광대 아서 플렉은 착하게 살아보려 
+                                하지만 인생의 부조리함과 쓴 맛이 끊임없이 그를 
+                                압도한다. 짝사랑도, 커리어도 마음대로 되지 않고 
+                                자신을 향한 세상의 더러움을 견디다 못한 그는 
+                                결국 최악의 악당 조커로 재탄생한다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <a href="#">제가 찾는 영화가 아닙니다</a>
+                    <a href="SiteAbout.html">FAQ</a>
+                    <a href="#">제가 찾는 영화가 맞습니다</a>
+                </div>
+            </div>    
+        </div>
+        <div class="slide_prev_button slide_button">◀</div>
+        <div class="slide_next_button slide_button">▶</div>
+    </div>-->
 
-
+	<script th:src="@{/result.js}"></script>
 </body>
 
 </html>
